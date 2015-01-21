@@ -1,6 +1,6 @@
---Abhijit Chandrakant Pawar ( abhi.c.pawar@gmail.com"
+--Abhijit Chandrakant Pawar ( abhi.c.pawar@gmail.com )
 {--
-This program is an attempt to get answer to the question posed by joel spolsky's fogcreek software once. 
+This program is an attempt to get answer to the question posed by joel software once. 
 I am able to code it correctly in haskell however still there are chances of improvements which I would be doing sooner.
 --} 
 
