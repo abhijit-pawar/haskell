@@ -39,23 +39,6 @@ main = do
 	putStrLn "Enter your credit card number"
 	card <- getLine
 
-	--putStrLn "converting the number to the list of digits"
-	let digits = toDigits (read card :: Integer)
-	--putStrLn $ show digits
-
-	--putStrLn "reversing the number to the list of digits"
-
-	let revDigits = toDigitsRev (read card :: Integer)
-	--putStrLn $ show revDigits
-
-	--putStrLn "doubling every other number of the reversed list"
-	let doubleDigits = doubleEveryOther revDigits
-	--putStrLn $ show doubleDigits
-
-	--putStrLn "suming each digit of this reversed list"
-	let sumofVal = sumDigits doubleDigits
-	--putStrLn $ show $ sumofVal
-
 	putStrLn "validating the number"
-	let ret = validate sumofVal
+	let ret = validate $ sumDigits $ doubleEveryOther $ toDigitsRev (read card :: Integer)
 	putStrLn $ show ret
