@@ -16,6 +16,7 @@ hanoi totalDisks pegA pegB pegC
 			| totalDisks == 1 = [(pegA,pegB)]
 			| totalDisks > 1 = hanoi (totalDisks - 1) pegA pegC pegB ++ [(pegA,pegB)] ++ hanoi (totalDisks -1) pegC pegB pegA
 
+
 main :: IO ()
 main = do
 	putStrLn "Tower of Hanoi of 3 towers"
@@ -24,6 +25,7 @@ main = do
 	let totalDisks = read disks :: Integer
 	let result = hanoi totalDisks "A" "B" "C"
 	putStrLn $ show result
-
+	putStrLn "The total Moves taken = "
+	putStrLn $  show (length result)
 
 
