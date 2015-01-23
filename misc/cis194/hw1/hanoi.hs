@@ -12,6 +12,7 @@ type Move = (Peg,Peg)
 --}
 
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi 0 _ _ _ = []
 hanoi totalDisks pegA pegB pegC  
 			| totalDisks == 1 = [(pegA,pegB)]
 			| totalDisks > 1 = hanoi (totalDisks - 1) pegA pegC pegB ++ [(pegA,pegB)] ++ hanoi (totalDisks -1) pegC pegB pegA
