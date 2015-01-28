@@ -34,3 +34,9 @@ parseMessage log = (parseWrapper.words) log
 
 parse :: String -> [LogMessage]
 parse log =  map parseMessage $ lines log
+
+--define a function which will insert the LogMessage in the binary tree where
+-- the timestamp on left tree of the node is less and greater on the right tree.
+
+insert :: LogMessage -> MessageTree -> MessageTree
+insert = undefined
