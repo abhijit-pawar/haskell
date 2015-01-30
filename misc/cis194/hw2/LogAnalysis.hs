@@ -20,9 +20,9 @@ parseWrapper log = case (head log) of
 			"I" -> parseInfo log
 			"W" -> parseWarning log
 			"E" -> parseError log
---			_  ->  Unknown head.words log
+			_  ->  Unknown (unwords log)
 
---define a function to parse the individual line from the log file
+
 
 parseMessage :: String -> LogMessage
 parseMessage log = (parseWrapper.words) log
@@ -35,21 +35,14 @@ parseMessage log = (parseWrapper.words) log
 parse :: String -> [LogMessage]
 parse log =  map parseMessage $ lines log
 
--- define a function to get the timestamp of the LogMessage
 
 getLogMsgTimeStamp :: LogMessage -> Int
 getLogMsgTimeStamp ( LogMessage m t d ) = t
 
---define a function to get the timestamp of the current node of the message tree
 
 getMsgTreeTimeStamp :: MessageTree -> Int
 getMsgTreeTimeStamp (Node l t r) =  getLogMsgTimeStamp t
 
---data MessageTree = Leaf | Node MessageTree LogMessage MessageTree
-
-
---define a function which will insert the LogMessage in the binary tree where
--- the timestamp on left tree of the node is less and greater on the right tree.
 
 insert :: LogMessage -> MessageTree -> MessageTree
 insert logMsg Leaf = Node Leaf logMsg Leaf
@@ -64,8 +57,7 @@ insert logMsgInput (Node leftTree treeLog rightTree)
 
 --build the messageTree
 build :: [LogMessage] -> MessageTree
---build [] = Node (Leaf (Unknown "unknowns") Leaf)
-build = foldr insert Leaf 
+build = foldr insert (Node Leaf (LogMessage Info 3000 "test") Leaf)
 
 
 
