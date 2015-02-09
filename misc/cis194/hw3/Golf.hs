@@ -19,7 +19,7 @@ getTuples n xs = filter(\ds -> length ds == n) $ (take n xs ) : getTuples n (dro
 
 localMaxima :: [Integer] -> [Integer]
 --localMaxima w:x:y:xs = map ( filter (\w x y -> w < x && x > y) w x y ) xs : localMaxima xs
-localMaxima xs  = map (\(a:b:c:ds) -> b) $ filter (\(a:b:c:ds) -> a < b && b > c) $ getTuples 3 xs
+localMaxima xs  = map (\(a:b:c:ds) -> b).filter (\(a:b:c:ds) -> a < b && b > c) $ getTuples 3 xs
 
 --Excercise 3 Histogram
 histogram :: [Integer] -> String
