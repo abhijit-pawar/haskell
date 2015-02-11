@@ -28,11 +28,11 @@ localMaxima xs  = map (\(a:b:c:ds) -> b).filter (\(a:b:c:ds) -> a < b && b > c) 
 --Build the rows from the given list
 --The list contain row number and the items on that row
 buildRow :: [Int] -> [[Int]]
-buildRow = reverse.transpose.reverse.sort.group.sort
+buildRow = map sort.reverse.transpose.reverse.sort.group.sort
 
 --Print the rows of the given matrix with the rule of Histogram
 printRow :: [[Int]] -> String
-printRow = undefined
+printRow = undefined --map (\x -> (foldr (\x y -> concat [ " ",x," ",y," "]) " " (map show x)))
 
 
 histogram :: [Integer] -> String
