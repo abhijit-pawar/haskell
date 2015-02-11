@@ -1,5 +1,7 @@
 module Golf where
 
+import Data.List
+
 --Take the items from the list whose position is multiple of the given number
 multiplesOf :: Int -> [a] -> [a]
 multiplesOf _ [] = []
@@ -22,7 +24,13 @@ localMaxima :: [Integer] -> [Integer]
 localMaxima xs  = map (\(a:b:c:ds) -> b).filter (\(a:b:c:ds) -> a < b && b > c) $ getTuples 3 xs
 
 --Excercise 3 Histogram
+
+--Build the rows from the given list
+--The list contain row number and the items on that row
+buildRow :: [Int] -> [[Int]]
+buildRow = transpose.reverse.sort.group.sort
+
 histogram :: [Integer] -> String
-histogram = undefined
+histogram xs = "\n==========\n0123456789\n"
 
 
