@@ -18,3 +18,26 @@ evalStr p = case parseExp Lit ET.Add ET.Mul p of
  
 evalStrFunctor :: String -> Maybe Integer
 evalStrFunctor = fmap eval . parseExp Lit ET.Add ET.Mul
+
+--Excercise 03
+--The TypeClass
+class Expr a where
+	lit :: Integer -> a	 
+	add :: a -> a -> a
+	mul :: a -> a -> a
+
+--make the ExprT an instance of Expr
+instance Expr ExprT where 
+	lit = Lit
+	add = Add
+	mul = Mul
+
+instance Expr Integer where
+	lit = id
+	add = (+)
+	mul = (*)
+
+reify :: ExprT -> ExprT
+reify = id
+
+
