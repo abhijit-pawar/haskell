@@ -18,7 +18,3 @@ evalStr p = case parseExp Lit ET.Add ET.Mul p of
  
 evalStrFunctor :: String -> Maybe Integer
 evalStrFunctor = fmap eval . parseExp Lit ET.Add ET.Mul
-			
---evalStr Nothing = Nothing
---evalStr Just ( ExprT t) = eval t
-
