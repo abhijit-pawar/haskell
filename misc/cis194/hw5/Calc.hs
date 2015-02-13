@@ -1,7 +1,12 @@
+{-# LANGUAGE TypeSynonymInstances #-}
+{-# LANGUAGE FlexibleInstances #-}
+
 module Calc where
 
 import ExprT as ET
 import Parser
+import StackVM as SVM
+
 
 --Excercise 01
 
@@ -29,8 +34,8 @@ class Expr a where
 --make the ExprT an instance of Expr
 instance Expr ExprT where 
 	lit = Lit
-	add = Add
-	mul = Mul
+	add = ET.Add
+	mul = ET.Mul
 
 reify :: ExprT -> ExprT
 reify = id
@@ -70,3 +75,14 @@ testInteger = testExp :: Maybe Integer
 testBool = testExp :: Maybe Bool
 testMM = testExp :: Maybe MinMax
 testSat = testExp :: Maybe Mod7
+
+--Excercise 05
+--create an instance of Expr for Program
+instance Expr Program where
+	lit a   = [PushI a]
+	add a b = a ++ b ++ [SVM.Add]
+	mul a b = a ++ b ++ [SVM.Mul]
+
+compile :: String -> Maybe Program
+compile = parseExp lit add mul 
+
