@@ -51,3 +51,11 @@ dropJ i jl | i > sizeOf jl = Empty
 dropJ i (Append m l r ) 
 	| i < sizeOf l = (dropJ i l) +++ r
 	| otherwise = dropJ ( i - sizeOf l) r
+
+takeJ :: (Sized b, Monoid b) => Int -> JoinList b a -> JoinList b a
+takeJ _ Empty = Empty
+takeJ i a | i <= 0 = a
+takeJ i jl | i > sizeOf jl = jl
+takeJ i (Append m l r )
+        | i < sizeOf l = takeJ i l 
+        | otherwise = l +++ takeJ ( i - sizeOf l) r
