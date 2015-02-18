@@ -6,6 +6,7 @@ import Data.Monoid
 import Sized
 import Editor
 import Buffer
+import Scrabble
 
 data JoinList m a = Empty 
 			| Single m a 
@@ -59,3 +60,7 @@ takeJ i jl | i > sizeOf jl = jl
 takeJ i (Append m l r )
         | i < sizeOf l = takeJ i l 
         | otherwise = l +++ takeJ ( i - sizeOf l) r
+
+--Excercise 03
+scoreLine :: String -> JoinList Score String
+scoreLine s = Single (scoreString s) s
