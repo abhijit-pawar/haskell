@@ -57,3 +57,7 @@ posInt = Parser f
 ------------------------------------------------------------
 -- Your code goes below here
 ------------------------------------------------------------
+--implement "first" function
+first:: (a->b) -> (a,c) -> (b,c)
+first f (a,c) = (f a, c)
+
