@@ -69,3 +69,10 @@ fmap f p = Parser f'
 			Nothing -> Nothing
 			Just (a,s') -> Just (f a, s')
 
+--Applicative instance of Parser
+instance Applicative Parser where
+pure a = Parser (\s -> Just (a,s))
+p1 <*> p2 = Parser f where
+	f s = case runParser p1 s of
+		Nothing -> Nothing
+		Just (f',s') -> runParser (f' <$> p2) s'
